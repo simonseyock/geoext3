@@ -70,7 +70,7 @@
  */
 Ext.define('GeoExt.component.Popup', {
     requires: [],
-    extend: 'Ext.Component',
+    extend: 'Ext.panel.Panel',
     alias: [
         'widget.gx_popup',
         'widget.gx_component_popup'
@@ -156,7 +156,8 @@ Ext.define('GeoExt.component.Popup', {
             autoPan: true,
             autoPanAnimation: {
                 duration: 250
-            }
+            },
+            stopEvent: true
         });
 
         me.getMap().addOverlay(overlay);

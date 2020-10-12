@@ -33,7 +33,8 @@ Ext.application({
 
         popup = Ext.create('GeoExt.component.Popup', {
             map: olMap,
-            width: 140
+            width: 140,
+            closable: true
         });
 
         mapComp = Ext.create('GeoExt.component.Map', {
@@ -46,7 +47,7 @@ Ext.application({
         });
 
         // Add a pointerrest handler to the map component to render the popup.
-        mapComp.on('pointerrest', function(evt) {
+        olMap.on('singleclick', function(evt) {
             var coordinate = evt.coordinate;
             var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
                 coordinate, 'EPSG:3857', 'EPSG:4326')
@@ -62,7 +63,7 @@ Ext.application({
         });
 
         // hide the popup once it isn't on the map any longer
-        mapComp.on('pointerrestout', popup.hide, popup);
+        // mapComp.on('pointerrestout', popup.hide, popup);
 
         description = Ext.create('Ext.panel.Panel', {
             contentEl: 'description',
